@@ -6,7 +6,7 @@ from datetime import datetime
 from percentTracker import PercentTracker
 import sys
 
-org = "+org:EBSCOIS"
+org = "+org:MYORG"
 
 # SECRETS ARE PULLED FROM A LOCAL secrets.json FILE.
 
