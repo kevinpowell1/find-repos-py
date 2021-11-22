@@ -1,1 +1,16 @@
 # panorollout-cleanup
+
+## Purpose
+
+`findRepos.py` is python script that locates repos based on a string and lists the last user who committed to that repo. It was developed for locating EBSCOIS repos that were created in the development of [platform.shared.panorollout-edge](https://github.com/EBSCOIS/platform.shared.panorollout-edge).
+
+## Requirements
+
+[Python 3](https://www.python.org/downloads/).
+
+## Usage
+
+- Clone repo
+- Add [Github Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to your own local `secrets.json` file
+- `cd to/repo/directory`
+- `python3 findRepos.py a-string`
