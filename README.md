@@ -12,5 +12,6 @@
 
 - Clone repo
 - Add [Github Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to your own local `secrets.json` file
+- Replace `MYORG` on line 9 of `findRepos.py`
 - `cd to/repo/directory`
 - `python3 findRepos.py a-string-without-spaces`
