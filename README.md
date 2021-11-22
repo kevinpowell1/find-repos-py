@@ -2,7 +2,7 @@
 
 ## Purpose
 
-`findRepos.py` is a python script that locates repos based on a string and lists the last user who committed to that repo.
+`findRepos.py` is a python script that locates repos based on a string. It generates a CSV file with the full repo name and the last user to commit to that repo. 
 
 ## Requirements
 
