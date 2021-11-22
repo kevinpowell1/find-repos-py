@@ -6,6 +6,7 @@ from datetime import datetime
 from percentTracker import PercentTracker
 import sys
 
+org = "+org:EBSCOIS"
 
 # SECRETS ARE PULLED FROM A LOCAL secrets.json FILE.
 
@@ -31,7 +32,7 @@ def gitHubApi(url):
 
 
 def getLastCommit(repo):
-    url = "https://api.github.com/repos/EBSCOIS/{}/commits".format(repo)
+    url = "https://api.github.com/repos/{}/commits".format(repo)
     commits = gitHubApi(url)
     return commits[0]["commit"]["author"]["name"]
 
@@ -41,8 +42,8 @@ def getLastCommit(repo):
 def findTestRepos(q):
     recordCount = 0
     page = 1
-    url = "https://api.github.com/search/repositories?q={} +in:name +org:EBSCOIS&per_page=100&page={}".format(
-        q, page)
+    url = "https://api.github.com/search/repositories?q={} +in:name {}&per_page=100&page={}".format(
+        q, org, page)
     records = gitHubApi(url)
     totalRecords = records["total_count"]
     recordCount += len(records["items"])
@@ -50,8 +51,8 @@ def findTestRepos(q):
     print("retrieving records...")
     while recordCount != totalRecords:
         page += 1
-        url = "https://api.github.com/search/repositories?q=platform.shared.ebsco-analytics +in:name +org:EBSCOIS&per_page=100&page={}".format(
-            page)
+        url = "https://api.github.com/search/repositories?q={} +in:name {}&per_page=100&page={}".format(
+            q, org, page)
         newRecords = gitHubApi(url)
         recordCount += len(newRecords["items"])
         items = [*items, *newRecords["items"]]
@@ -62,7 +63,7 @@ def findTestRepos(q):
     for i in items:
         percent_tracker.print_message(i["full_name"])
         row = {"repoName": i["full_name"],
-               "lastCommitter": getLastCommit(i["name"])}
+               "lastCommitter": getLastCommit(i["full_name"])}
         rows.append(row)
     date = datetime.now().strftime("%Y%m%d")
     csvpath = "reports/{}-{}-repos.csv".format(date, sys.argv[-1])
