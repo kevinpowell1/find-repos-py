@@ -2,11 +2,11 @@
 
 ## Purpose
 
-`findRepos.py` is python script that locates repos based on a string and lists the last user who committed to that repo. It was developed for locating EBSCOIS repos that were created in the development of [platform.shared.panorollout-edge](https://github.com/EBSCOIS/platform.shared.panorollout-edge).
+`findRepos.py` is a python script that locates repos based on a string and lists the last user who committed to that repo. It was developed for locating EBSCOIS repos that were created in the development of [platform.shared.panorollout-edge](https://github.com/EBSCOIS/platform.shared.panorollout-edge).
 
 ## Requirements
 
-[Python 3](https://www.python.org/downloads/).
+[Python 3](https://www.python.org/downloads/)
 
 ## Usage
 
