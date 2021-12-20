@@ -6,7 +6,7 @@ from datetime import datetime
 from percentTracker import PercentTracker
 import sys
 
-org = "+org:MYORG"
+org = "EBSCOIS"
 
 # SECRETS ARE PULLED FROM A LOCAL secrets.json FILE.
 
@@ -42,20 +42,18 @@ def getLastCommit(repo):
 def findTestRepos(q):
     recordCount = 0
     page = 1
-    url = "https://api.github.com/search/repositories?q={} +in:name {}&per_page=100&page={}".format(
-        q, org, page)
-    records = gitHubApi(url)
-    totalRecords = records["total_count"]
-    recordCount += len(records["items"])
-    items = records["items"]
+    newRecordCount = 1
+    items = []
     print("retrieving records...")
-    while recordCount != totalRecords:
-        page += 1
-        url = "https://api.github.com/search/repositories?q={} +in:name {}&per_page=100&page={}".format(
+    while newRecordCount != 0:
+        url = "https://api.github.com/search/repositories?q={} +in:name +org:{} &per_page=100&page={}".format(
             q, org, page)
         newRecords = gitHubApi(url)
-        recordCount += len(newRecords["items"])
+        newRecordCount = len(newRecords["items"])
+        recordCount += newRecordCount
+        print(page, len(items))
         items = [*items, *newRecords["items"]]
+        page += 1
     rows = []
     print("finding commits...")
     percent_tracker = PercentTracker()
